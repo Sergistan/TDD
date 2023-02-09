@@ -4,7 +4,7 @@ import java.util.TreeMap;
 public class PhoneBook {
     TreeMap<String, Integer> map = new TreeMap<>();
 
-    public int add (String name, Integer phoneNumber){
+    public int add (String name, int phoneNumber){
         if (!map.containsKey(name)) {
             map.put(name,phoneNumber);
         } else {
@@ -12,5 +12,9 @@ public class PhoneBook {
         }
         Set<String> strings = map.keySet();
         return strings.size();
+    }
+
+    public String findByNumber(int phoneNumber){
+        return null;
     }
 }
