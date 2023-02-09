@@ -9,16 +9,13 @@ import java.util.TreeMap;
 
 public class PhoneBookTest {
     private static Random random = new Random();
+    private static int generatedInt = random.nextInt();
 
     @Test
     public void testAdd() {
         PhoneBook phoneBook = new PhoneBook();
         int result = 0;
-
-        byte[] array = new byte[7];
-        random.nextBytes(array);
-        String generatedString = new String(array, StandardCharsets.UTF_8);
-        int generatedInt = random.nextInt();
+        String generatedString = randomString();
 
         TreeMap<String, Integer> map = new TreeMap<>();
 
@@ -37,10 +34,7 @@ public class PhoneBookTest {
     @Test
     public void findByNumber() {
         PhoneBook phoneBook = new PhoneBook();
-        byte[] array = new byte[7];
-        random.nextBytes(array);
-        String generatedString = new String(array, StandardCharsets.UTF_8);
-        int generatedInt = random.nextInt();
+        String generatedString = randomString();
 
         TreeMap<String, Integer> map = new TreeMap<>();
         map.put(generatedString, generatedInt);
@@ -55,6 +49,11 @@ public class PhoneBookTest {
             }
         }
 
+    }
 
+    public static String randomString() {
+        byte[] array = new byte[7];
+        random.nextBytes(array);
+        return new String(array, StandardCharsets.UTF_8);
     }
 }
