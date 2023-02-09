@@ -32,14 +32,13 @@ public class PhoneBookTest {
         PhoneBook phoneBook = new PhoneBook();
         String generatedString = randomString();
 
-        TreeMap<String, Integer> map = new TreeMap<>();
-        map.put(generatedString, generatedInt);
+        phoneBook.map.put(generatedString, generatedInt);
 
         generatedString = phoneBook.findByNumber(generatedInt);
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (!entry.getValue().equals(generatedInt))
-                Assertions.assertEquals(null, generatedString);
+        for (Map.Entry<String, Integer> entry : phoneBook.map.entrySet()) {
+            if (entry.getValue().equals(generatedInt))
+                Assertions.assertEquals(entry.getKey(), generatedString);
         }
     }
 
@@ -48,15 +47,13 @@ public class PhoneBookTest {
         PhoneBook phoneBook = new PhoneBook();
         String generatedString = randomString();
 
-        TreeMap<String, Integer> map = new TreeMap<>();
-        map.put(generatedString, generatedInt);
+        phoneBook.map.put(generatedString, generatedInt);
 
         int generatedInt = phoneBook.findByName(generatedString);
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (!entry.getKey().equals(generatedString)) {
-                Assertions.assertEquals(0, generatedInt);
-            }
+        for (Map.Entry<String, Integer> entry : phoneBook.map.entrySet()) {
+            if (entry.getKey().equals(generatedString))
+                Assertions.assertEquals(entry.getValue(), generatedInt);
         }
     }
 
@@ -65,12 +62,11 @@ public class PhoneBookTest {
         PhoneBook phoneBook = new PhoneBook();
         String generatedString = randomString();
 
-        TreeMap<String, Integer> map = new TreeMap<>();
-        map.put(generatedString, generatedInt);
+        phoneBook.map.put(generatedString, generatedInt);
 
         Set<String> allNames = phoneBook.printAllNames();
 
-        Set<String> strings = map.keySet();
+        Set<String> strings = phoneBook.map.keySet();
 
         Assertions.assertEquals(allNames, strings);
     }

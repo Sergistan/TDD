@@ -15,5 +15,9 @@ public class Main {
 
         System.out.println(phoneBook.findByName("Илья"));
         System.out.println(phoneBook.findByName("Макар"));
+
+        System.out.println();
+
+        System.out.println(phoneBook.printAllNames());
     }
 }

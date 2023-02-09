@@ -35,6 +35,6 @@ public class PhoneBook {
     }
 
     public Set<String> printAllNames () {
-        return null;
+        return map.keySet();
     }
 }
