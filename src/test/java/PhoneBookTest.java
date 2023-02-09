@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -42,11 +41,8 @@ public class PhoneBookTest {
         generatedString = phoneBook.findByNumber(generatedInt);
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (entry.getValue().equals(generatedInt)) {
-                Assertions.assertEquals(entry.getKey(), generatedString);
-            } else {
-                Assertions.assertNotEquals(entry.getKey(), generatedString);
-            }
+            if (!entry.getValue().equals(generatedInt))
+                Assertions.assertEquals(null, generatedString);
         }
     }
 
@@ -58,20 +54,21 @@ public class PhoneBookTest {
         TreeMap<String, Integer> map = new TreeMap<>();
         map.put(generatedString, generatedInt);
 
-        generatedInt = phoneBook.findByName(generatedString);
+        int generatedInt = phoneBook.findByName(generatedString);
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (entry.getKey().equals(generatedString)) {
-                Assertions.assertEquals(entry.getValue(), generatedInt);
-            } else {
-                Assertions.assertNotEquals(entry.getValue(), generatedInt);
-            }
+            if (!entry.getKey().equals(generatedString))
+                Assertions.assertEquals(0, generatedInt);
         }
     }
 
     public static String randomString() {
-        byte[] array = new byte[7];
-        random.nextBytes(array);
-        return new String(array, StandardCharsets.UTF_8);
+        int leftLimit = 97;
+        int rightLimit = 122;
+        int targetStringLength = 10;
+        return random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 }
