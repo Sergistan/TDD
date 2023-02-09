@@ -10,16 +10,13 @@ public class PhoneBookTest {
     @Test
     public void testAdd() {
         PhoneBook phoneBook = new PhoneBook();
-        int result = 0;
         String generatedString = randomString();
-
-        TreeMap<String, Integer> map = new TreeMap<>();
-
+        int result = 0;
         int countContacts = phoneBook.add(generatedString, generatedInt);
 
-        if (!map.containsKey(generatedString)) {
-            map.put(generatedString, generatedInt);
-            Set<String> strings = map.keySet();
+        if (phoneBook.map.containsKey(generatedString)) {
+            phoneBook.map.put(generatedString, generatedInt);
+            Set<String> strings = phoneBook.map.keySet();
             result = strings.size();
         } else {
             System.out.println("Такое имя уже есть, не можем добавить");
