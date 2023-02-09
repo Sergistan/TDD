@@ -48,7 +48,25 @@ public class PhoneBookTest {
                 Assertions.assertNotEquals(entry.getKey(), generatedString);
             }
         }
+    }
 
+    @Test
+    public void findByName() {
+        PhoneBook phoneBook = new PhoneBook();
+        String generatedString = randomString();
+
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put(generatedString, generatedInt);
+
+        generatedInt = phoneBook.findByName(generatedString);
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getKey().equals(generatedString)) {
+                Assertions.assertEquals(entry.getValue(), generatedInt);
+            } else {
+                Assertions.assertNotEquals(entry.getValue(), generatedInt);
+            }
+        }
     }
 
     public static String randomString() {

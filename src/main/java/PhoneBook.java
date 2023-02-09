@@ -5,9 +5,9 @@ import java.util.TreeMap;
 public class PhoneBook {
     TreeMap<String, Integer> map = new TreeMap<>();
 
-    public int add (String name, int phoneNumber){
+    public int add(String name, int phoneNumber) {
         if (!map.containsKey(name)) {
-            map.put(name,phoneNumber);
+            map.put(name, phoneNumber);
         } else {
             System.out.println("Такое имя уже есть, не можем добавить");
         }
@@ -15,7 +15,7 @@ public class PhoneBook {
         return strings.size();
     }
 
-    public String findByNumber(int phoneNumber){
+    public String findByNumber(int phoneNumber) {
         String name = null;
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             if (entry.getValue().equals(phoneNumber)) {
@@ -23,5 +23,9 @@ public class PhoneBook {
             }
         }
         return name;
+    }
+
+    public int findByName(String name) {
+        return 0;
     }
 }
