@@ -1,10 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PhoneBookTest {
     private static Random random = new Random();
@@ -57,10 +54,27 @@ public class PhoneBookTest {
         int generatedInt = phoneBook.findByName(generatedString);
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (!entry.getKey().equals(generatedString))
+            if (!entry.getKey().equals(generatedString)) {
                 Assertions.assertEquals(0, generatedInt);
+            }
         }
     }
+
+    @Test
+    public void printAllNames() {
+        PhoneBook phoneBook = new PhoneBook();
+        String generatedString = randomString();
+
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put(generatedString, generatedInt);
+
+        Set<String> allNames = phoneBook.printAllNames();
+
+        Set<String> strings = map.keySet();
+
+        Assertions.assertEquals(allNames, strings);
+    }
+
 
     public static String randomString() {
         int leftLimit = 97;

@@ -33,4 +33,8 @@ public class PhoneBook {
         }
         return 0;
     }
+
+    public Set<String> printAllNames () {
+        return null;
+    }
 }
